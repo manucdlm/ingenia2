@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantillas/plantilla.xhtml">
+
+	<ui:define name="metadata">
+	</ui:define>
+
+	<ui:define name="content">
+	
+			<h:form>
+				<center><h3>Mis Cursos</h3> </center>
+			<h:panelGrid columns="3" cellpadding="10">
+
+				<h:outputLabel for="curso" value="Nombre Curso:" />
+				<p:inputText id="curso" value="#{AdmCursoMB.curso}" required="false" label="curso" />
+			<p:commandButton value="Buscar" action="#{AdmCursoMB.buscar}" />
+		
+			</h:panelGrid>
+			
+			<div id="crear" align="right" >
+          <p:commandButton value="Crear nuevo curso" id="ajax" action="#{AdmCursoMB.nuevoCurso}"  styleClass="ui-priority-primary" />
+			</div>
+		</h:form>
+
+		<h:form>
+			<p:dataTable var="curso" value="#{AdmCursoMB.listaCursos}"
+				rendered="#{not empty AdmCursoMB.listaCursos}" paginator="true"
+				rows="8" dynamic="true">
+				<p:column headerText="Nombre">
+					<p:commandButton icon="ui-icon-search" value="#{curso.nombre}"
+						process="@this" action="#{AdmCursoMB.irCurso}">
+						<f:param name="id" value="#{curso.idcurso}" />
+					</p:commandButton>
+				</p:column> 
+				
+				<p:column headerText="Descripción">
+					<h:outputText name="descripcion" value="#{curso.descripcion}" />
+				</p:column>
+
+				<p:column headerText="Estado">
+					<h:outputText value="#{curso.estado}" />
+				</p:column>
+
+			</p:dataTable>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>

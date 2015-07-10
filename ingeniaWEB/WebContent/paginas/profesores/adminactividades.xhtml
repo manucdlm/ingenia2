@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantillas/plantilla.xhtml">
+
+	<ui:define name="metadata">
+	</ui:define>
+
+	<ui:define name="content">
+									Mis Actividades
+		<h:form>
+			 
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="username" value="Actividad:" />
+				<p:inputText id="username" value="#{AdmUsuarioMB.usuario}"
+					required="false" label="Usuario" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Buscar" action="#{AdmUsuarioMB.buscar}" />
+				</f:facet>
+
+			</h:panelGrid>
+			<div id="crear" align="right" >
+			<p:commandButton  id="crear" action="#{AdmActividadMB.nuevaActividad}" value="Crear actividad "/>
+			</div>
+		</h:form>
+
+		<h:form>
+			
+			<p:dataTable var="actividad" value="#{AdmActividadMB.listaActividades}"
+				rendered="#{not empty AdmActividadMB.listaActividades}" paginator="true"
+				rows="8" dynamic="true">
+				<p:column headerText="Nombre">
+	<p:commandButton icon="ui-icon-search" value="#{actividad.enunciado}" process="@this" action="#{AdmActividadMB.irActividad}">
+	<f:param name="idactividad" value="#{actividad.idactividad}" />
+	</p:commandButton>
+				</p:column> 
+				
+				<p:column headerText="Descripción">
+					<h:outputText name="descripcion" value="#{actividad.enunciado}" />
+				</p:column>
+
+				<p:column headerText="Estado">
+					<h:outputText value="#{actividad.activo}" />
+				</p:column>
+
+			</p:dataTable>
+
+	
+			
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

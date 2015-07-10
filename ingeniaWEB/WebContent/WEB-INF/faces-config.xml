@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+    http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+
+	<application>
+		<variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
+
+		<locale-config>
+			<default-locale>es</default-locale>
+		</locale-config>
+ 
+	</application>
+	
+	<navigation-rule>
+		<from-view-id>login.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{usuarioMB.autenticar}</from-action>
+			<from-outcome>valido</from-outcome>
+			<to-view-id>/paginas/inicio.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>adminactividad</from-outcome>
+			<to-view-id>/paginas/profesores/adminactividades.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>admincurso</from-outcome>
+			<to-view-id>/paginas/profesores/admincursos.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>irusuario</from-outcome>
+			<to-view-id>/paginas/usuarios/usuario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>irrol</from-outcome>
+			<to-view-id>/paginas/usuarios/rol.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>iradminusuario</from-outcome>
+			<to-view-id>/paginas/usuarios/adminusuarios.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>iradminrol</from-outcome>
+			<to-view-id>/paginas/usuarios/adminrol.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+	
+		<from-view-id>*</from-view-id>
+		
+		<navigation-case>
+			<from-outcome>iradminactividad</from-outcome>
+			<to-view-id>/paginas/profesores/adminactividades.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+       
+         <navigation-case>
+            <from-outcome>iractividadcurso</from-outcome>
+            <to-view-id>paginas/profesores/actividadcurso.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        
+        	<navigation-case>
+			<from-outcome>iradmincurso</from-outcome>
+			<to-view-id>/paginas/profesores/admincursos.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+            <from-outcome>configuraractividad</from-outcome>
+            <to-view-id>paginas/profesores/configuraciongatos.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+		
+			<navigation-case>
+			<from-outcome>iractividad</from-outcome>
+			<to-view-id>/paginas/profesores/actividad.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+			<navigation-case>
+			<from-outcome>ircurso</from-outcome>
+			<to-view-id>/paginas/profesores/curso.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+	</navigation-rule>
+
+
+</faces-config>
